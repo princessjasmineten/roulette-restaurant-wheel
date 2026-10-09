@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Roulette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Dinner decision time</p>
+          <h1>Restaurant Roulette</h1>
+        </div>
+      </header>
+
+      <main class="app-grid">
+        <section class="panel controls-panel">
+          <div class="segmented-control">
+            <button class="tab active" type="button" data-tab="host">Host</button>
+            <button class="tab" type="button" data-tab="guest">Guest</button>
+          </div>
+
+          <div class="card host-card active" data-card="host">
+            <h2>Create a room</h2>
+            <p>Start a session and share the code with your group.</p>
+            <button id="create-room-btn" class="primary-btn" type="button">Create room</button>
+          </div>
+
+          <div class="card guest-card" data-card="guest">
+            <h2>Join a room</h2>
+            <label>
+              <span>Your name</span>
+              <input id="guest-name" type="text" placeholder="Alex" maxlength="24" />
+            </label>
+            <label>
+              <span>Room code</span>
+              <input id="room-code-input" type="text" placeholder="ABCD5" maxlength="5" />
+            </label>
+            <button id="join-room-btn" class="primary-btn" type="button">Join room</button>
+          </div>
+        </section>
+
+        <section class="panel wheel-panel">
+          <div id="room-status" class="room-status hidden">
+            Room: <strong id="room-code-display">—</strong>
+          </div>
+
+          <div class="roulette-wrap">
+            <div class="pointer" aria-hidden="true"></div>
+            <div id="roulette-wheel" class="roulette-wheel">
+              <div class="wheel-inner-ring"></div>
+            </div>
+          </div>
+
+          <div id="result-banner" class="result-banner hidden"></div>
+        </section>
+
+        <section class="panel choices-panel">
+          <div class="panel-header">
+            <h2>Places to eat</h2>
+            <div class="host-actions">
+              <button id="close-room-btn" class="secondary-btn" type="button">Close room</button>
+              <button id="spin-btn" class="primary-btn" type="button">Spin wheel</button>
+            </div>
+          </div>
+
+          <div class="entry-form">
+            <input id="restaurant-input" type="text" placeholder="Add a restaurant or place" maxlength="80" />
+            <button id="add-entry-btn" class="primary-btn" type="button">Add</button>
+          </div>
+
+          <ul id="entries-list" class="entries-list">
+            <li class="empty-state">No places added yet.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
